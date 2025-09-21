@@ -1,5 +1,5 @@
 use std::fs::File;
-use std::io::{self, Read};
+use std::io::Read;
 
 // Algorithm to calculate Shannon entropy
 fn entropy(data: &[u8]) -> f64 {
@@ -18,7 +18,7 @@ fn entropy(data: &[u8]) -> f64 {
         .sum()
 }
 
-pub fn read_file(file_path: &str) -> Result<Vec<u8>, io::Error> {
+pub fn read_file(file_path: &str) -> Result<Vec<u8>, Box<dyn std::error::Error>> {
     let mut file = File::open(file_path)?;
     let mut buf = Vec::new();
     file.read_to_end(&mut buf)?;
