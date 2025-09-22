@@ -5,3 +5,4 @@ edition = "2024"
 
 [dependencies]
 entropy = "0.4.2"
+plotters = "0.3.3"

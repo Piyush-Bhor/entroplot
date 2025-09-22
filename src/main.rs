@@ -1,7 +1,7 @@
 use std::env;
 use std::error::Error;
 
-use entropyviz2::{calculate_entropy, draw_entropy_graph, read_file};
+use entropyviz2::{calculate_entropy, draw_entropy_chart, read_file};
 
 const BLOCK_SIZE: usize = 1024;
 
@@ -23,8 +23,8 @@ fn main() -> Result<(), Box<dyn Error>> {
     // Calculate entropy of each block of the buffer
     let entropies = calculate_entropy(&mut buf, BLOCK_SIZE);
 
-    // Draw a graph based on the entropies
-    draw_entropy_graph(&entropies);
+    // Draw a chart based on the entropies
+    draw_entropy_chart(&entropies, "entropy_chart.png")?;
 
     Ok(())
 }
