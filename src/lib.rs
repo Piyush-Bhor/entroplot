@@ -1,7 +1,23 @@
+use clap::Parser;
 use entropy::shannon_entropy;
 use plotters::prelude::*;
 use std::fs::File;
 use std::io::Read;
+
+#[derive(Parser)]
+#[command(
+    name = "entroplot",
+    version = "0.1.0",
+    about = "Generate entropy plots"
+)]
+pub struct Cli {
+    /// Input file path
+    pub input_file: String,
+
+    /// Output file path
+    #[arg(short, long, default_value = "entropy_chart.png")]
+    pub output_file: String,
+}
 
 /// Reads a file and returns it buffer.
 pub fn read_file(file_path: &str) -> Result<Vec<u8>, Box<dyn std::error::Error>> {
