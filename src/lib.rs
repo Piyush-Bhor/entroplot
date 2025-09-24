@@ -1,3 +1,4 @@
+use anyhow::Context;
 use clap::Parser;
 use entropy::shannon_entropy;
 use plotters::prelude::*;
@@ -11,19 +12,21 @@ use std::io::Read;
     about = "Generate entropy plots"
 )]
 pub struct Cli {
-    /// Input file path
+    /// The path to the input file whose entropy will be calculated.
     pub input_file: String,
 
-    /// Output file path
+    /// The path where the generated entropy chart will be saved.
     #[arg(short, long, default_value = "entropy_chart.png")]
     pub output_file: String,
 }
 
 /// Reads a file and returns it buffer.
 pub fn read_file(file_path: &str) -> Result<Vec<u8>, Box<dyn std::error::Error>> {
-    let mut file = File::open(file_path)?;
+    let mut file =
+        File::open(file_path).with_context(|| format!("Failed to open file: `{}`.", file_path))?;
     let mut buf = Vec::new();
-    file.read_to_end(&mut buf)?;
+    file.read_to_end(&mut buf)
+        .with_context(|| format!("Failed to read contents of file: `{}`", file_path))?;
 
     Ok(buf)
 }
@@ -77,4 +80,26 @@ pub fn draw_entropy_chart(
     // Save chart
     root.present()?;
     Ok(())
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn calculate_entropy_single_block() {
+        // Buffer with low entropy
+        let buf = vec![0u8; 16]; // all zeros
+        let entropies = calculate_entropy(&buf, 1024);
+
+        assert_eq!(entropies.len(), 1); // single block
+        assert!((entropies[0] - 0.0).abs() < 1e-6); // entropy should be ~0
+    }
+
+    #[test]
+    fn test_calculate_entropy_empty_buffer() {
+        let buf: Vec<u8> = Vec::new();
+        let entropies = calculate_entropy(&buf, 1024);
+        assert!(entropies.is_empty());
+    }
 }
