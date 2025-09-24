@@ -1,7 +1,7 @@
 use clap::Parser;
 use std::error::Error;
 
-use entropyviz2::{Cli, calculate_entropy, draw_entropy_chart, read_file};
+use entroplot::{Cli, calculate_entropy, draw_entropy_chart, read_file};
 
 const BLOCK_SIZE: usize = 1024;
 

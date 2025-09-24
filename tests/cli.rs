@@ -4,7 +4,7 @@ use std::fs;
 
 #[test]
 fn no_args_provided() -> Result<(), Box<dyn std::error::Error>> {
-    let mut cmd = Command::cargo_bin("entropyviz2")?;
+    let mut cmd = Command::cargo_bin("entroplot")?;
 
     cmd.assert().failure().stderr(predicate::str::contains(
         "the following required arguments were not provided",
@@ -15,7 +15,7 @@ fn no_args_provided() -> Result<(), Box<dyn std::error::Error>> {
 
 #[test]
 fn file_doesnt_exist() -> Result<(), Box<dyn std::error::Error>> {
-    let mut cmd = Command::cargo_bin("entropyviz2")?;
+    let mut cmd = Command::cargo_bin("entroplot")?;
 
     cmd.arg("test/file/doesnt/exist");
     cmd.assert()
@@ -31,7 +31,7 @@ fn valid_file() -> Result<(), Box<dyn std::error::Error>> {
     let input_path = "tests/test.bin";
     fs::write(input_path, &[0u8; 1024])?;
 
-    let mut cmd = Command::cargo_bin("entropyviz2")?;
+    let mut cmd = Command::cargo_bin("entroplot")?;
     cmd.arg(input_path)
         .arg("--output-file")
         .arg("tests/out.png");
@@ -47,11 +47,11 @@ fn valid_file() -> Result<(), Box<dyn std::error::Error>> {
 
 #[test]
 fn help_arg_is_passed() -> Result<(), Box<dyn std::error::Error>> {
-    let mut cmd = Command::cargo_bin("entropyviz2")?;
+    let mut cmd = Command::cargo_bin("entroplot")?;
 
     cmd.arg("--help");
     cmd.assert().success().stdout(predicate::str::contains(
-        "Usage: entropyviz2 [OPTIONS] <INPUT_FILE>",
+        "Usage: entroplot [OPTIONS] <INPUT_FILE>",
     ));
 
     Ok(())
@@ -59,7 +59,7 @@ fn help_arg_is_passed() -> Result<(), Box<dyn std::error::Error>> {
 
 #[test]
 fn version_arg_is_passed() -> Result<(), Box<dyn std::error::Error>> {
-    let mut cmd = Command::cargo_bin("entropyviz2")?;
+    let mut cmd = Command::cargo_bin("entroplot")?;
 
     cmd.arg("--version");
     cmd.assert()
