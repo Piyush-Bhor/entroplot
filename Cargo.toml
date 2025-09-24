@@ -2,6 +2,15 @@
 name = "entroplot"
 version = "0.1.0"
 edition = "2024"
+authors = ["Piyush Bhor <piyushbhor22@gmail.com>"]
+license = "GPL"
+description = "A Rust tool for visualizing entropy in files"
+readme = "README.md"
+homepage = "https://github.com/Piyush-Bhor/entroplot"
+repository = "https://github.com/Piyush-Bhor/entroplot"
+keywords = ["entropy", "graph", "cli"]
+categories = ["command-line-utilities"]
+
 
 [dependencies]
 anyhow = "1.0.100"
