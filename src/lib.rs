@@ -3,6 +3,7 @@ use plotters::prelude::*;
 use std::fs::File;
 use std::io::Read;
 
+/// Reads a file and returns it buffer.
 pub fn read_file(file_path: &str) -> Result<Vec<u8>, Box<dyn std::error::Error>> {
     let mut file = File::open(file_path)?;
     let mut buf = Vec::new();
@@ -11,12 +12,14 @@ pub fn read_file(file_path: &str) -> Result<Vec<u8>, Box<dyn std::error::Error>>
     Ok(buf)
 }
 
+/// Calaculates the Shannon Entropy of a buffer in chunks.
 pub fn calculate_entropy(buf: &[u8], block_size: usize) -> Vec<f32> {
     buf.chunks(block_size)
         .map(|chunk| shannon_entropy(chunk))
         .collect()
 }
 
+/// Draws a line chart based on the Shannon entropies of each chunk of a file buffer.
 pub fn draw_entropy_chart(
     entropies: &[f32],
     output: &str,
