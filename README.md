@@ -1,60 +1,60 @@
 # Entroplot
 
-`entroplot` is a Rust tool for analyzing and visualizing the entropy of files.  
-It can be useful for reverse engineers, security researchers, and developers who want to understand the randomness or structure of binary data.
+![Rust](https://img.shields.io/badge/language-Rust-orange)
+![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)
 
-![Entropy Plot](./assets/entropy_chart.png)
+> **`entroplot` is a Rust-based command-line tool for analyzing and visualizing file entropy.**  
+> It helps reverse engineers, security researchers, and developers uncover patterns, randomness, or structure in binary data.
 
-## Features
+## ✨ Features
 
-- Read any file and calculate its entropy
-- Plot entropy values to help visualize patterns in binary data
+- 📂 Analyze the entropy of any file
+- 📈 Generate entropy plots to visualize randomness and structure
+- 🛠️ Simple CLI interface
 
-## Installation
+## 🚀 Installation
 
 Clone the repository and build with Cargo:
 
 ```bash
-git clone https://github.com/Piyush-Bhor/entroplot
+git clone https://github.com/Piyush-Bhor/entroplot.git
 cd entroplot
 cargo build --release
 ```
 
-The binary will be available in target/release/entroplot.
+The compiled binary will be available at `target/release/entroplot`.
 
-#### Usage
+## 🖥️ Usage
+
+Basic usage:
 
 ```bash
 entroplot <file>
 ```
 
-#### Example:
+Example:
 
 ```bash
 entroplot ./samples/malware.bin
 ```
 
-This will create an graph showing the entropy of the file.
-The graph will be saved as 'entropy_chart.png' in the current working directory.
+This generates a plot (`entropy_chart.png` by default) showing the entropy distribution of the file.
 
-You can specify the name and path of the output file by passing it to the binary like this:
+### Output file customization
 
 ```bash
 entroplot ./samples/malware.bin --output-file /path/to/output.png
-
+# or shorthand
 entroplot ./samples/malware.bin -o /path/to/output.png
 ```
 
-You can see the 'help' using the `-h` or `--help` argument
+### Help
 
 ```bash
-entroplot -- --help
-
-entroplot -- -h
+entroplot --help
 ```
 
 ```
-
 Generate entropy plots
 
 Usage: entroplot [OPTIONS] <INPUT_FILE>
@@ -63,13 +63,16 @@ Arguments:
   <INPUT_FILE>  The path to the input file whose entropy will be calculated
 
 Options:
-  -o, --output-file <OUTPUT_FILE>  The path where the generated entropy chart will be saved [default entropy_chart.png]
+  -o, --output-file <OUTPUT_FILE>  Path to save the entropy chart [default: entropy_chart.png]
   -h, --help                       Print help
   -V, --version                    Print version
-
 ```
 
-## Development
+## 📊 Example Output
+
+![Entropy Plot](./assets/entropy_chart.png)
+
+## 🧪 Development
 
 Run tests with:
 
@@ -77,18 +80,23 @@ Run tests with:
 cargo test
 ```
 
-## Roadmap
+## 🛣️ Roadmap
 
-1. Add interactive entropy visualization
+- [ ] Add interactive entropy visualization
+- [ ] Support additional file formats
+- [ ] Export results to JSON/CSV
+- [ ] Include more statistical measures beyond Shannon entropy
 
-2. Support for multiple file formats
-
-3. Export results to JSON/CSV
-
-   - More statistical measures beyond Shannon entropy
-
-## Contributing
+## 🤝 Contributing
 
 Contributions, bug reports, and feature requests are welcome!
-Please open an issue or submit a pull request.
-License
+Please open an [issue](https://github.com/Piyush-Bhor/entroplot/issues) or submit a pull request.
+
+## 📜 License
+
+This project is licensed under the **GNU GPL v3**.
+See the [LICENSE](./LICENSE) file for details.
+
+---
+
+**Made with ❤️ by [Piyush Bhor](https://github.com/Piyush-Bhor)**
