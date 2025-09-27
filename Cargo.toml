@@ -8,8 +8,8 @@ description = "A Rust tool for visualizing entropy in files"
 readme = "README.md"
 homepage = "https://github.com/Piyush-Bhor/entroplot"
 repository = "https://github.com/Piyush-Bhor/entroplot"
-keywords = ["entropy", "graph", "cli"]
-categories = ["command-line-utilities"]
+keywords = ["entropy", "security", "visualization", "analysis"]
+categories = ["command-line-utilities", "visualization"]
 
 
 [dependencies]
